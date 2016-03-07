@@ -12,12 +12,12 @@
         <td><%= user.name %></td>
         <td><%= user.furigana %></td>
         <td>
-            <form action="users" method="delete">
-                <button>delete</button>
+            <form method="post" action="/users/<%= user._id %>?_method=delete">
+                <button type="submit">delete</button>
             </form>
         </td>
     </tr>
     <% }) %>
 </table>
 
-<a href="users/new">new user</a>
+<a href="/users/new">new user</a>
