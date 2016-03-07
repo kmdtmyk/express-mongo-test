@@ -1,10 +1,16 @@
 var express = require('express');
+var ejs = require('ejs');
 var mongodb = require('mongodb');
 
 var users;
 var PORT = 3000;
 
 var app = express();
+
+// app.set('views', __dirname + '/views');
+// app.set('views engine', 'ejs');
+app.engine('ejs', ejs.renderFile);
+
 app.use(express.static('public'));
 app.listen(PORT);
 
@@ -20,4 +26,8 @@ app.get('/users.:format?', function(req, res){
     users.find().toArray(function(err, items){
         res.send(items);
     });
+});
+
+app.get('/users/new', function(req, res){
+    res.render('users/new.ejs');
 });
