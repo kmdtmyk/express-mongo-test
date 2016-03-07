@@ -11,7 +11,11 @@
     <tr>
         <td><%= user.name %></td>
         <td><%= user.furigana %></td>
-        <td><button>delete</button></td>
+        <td>
+            <form action="users" method="delete">
+                <button>delete</button>
+            </form>
+        </td>
     </tr>
     <% }) %>
 </table>
