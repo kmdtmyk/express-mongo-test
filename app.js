@@ -1,18 +1,18 @@
 'use strict';
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+let express = require('express');
+let bodyParser = require('body-parser');
+let methodOverride = require('method-override');
 
-var ejs = require('ejs');
-var mongodb = require('mongodb');
+let ejs = require('ejs');
+let mongodb = require('mongodb');
 
-var morgan = require('morgan');
+let morgan = require('morgan');
 
-var users;
-var PORT = 3000;
+let users;
+let PORT = 3000;
 
-var app = express();
+let app = express();
 
 // app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
