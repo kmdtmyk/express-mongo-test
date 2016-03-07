@@ -1,0 +1,16 @@
+<h2>users list</h2>
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>furigana</th>
+    </tr>
+    <% users.forEach(function(user){ %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.furigana %></td>
+    </tr>
+    <% }) %>
+</table>
+
+<a href="users/new">new user</a>
