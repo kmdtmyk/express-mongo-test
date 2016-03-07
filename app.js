@@ -2,6 +2,8 @@ var express = require('express');
 var ejs = require('ejs');
 var mongodb = require('mongodb');
 
+var morgan = require('morgan');
+
 var users;
 var PORT = 3000;
 
@@ -11,6 +13,7 @@ var app = express();
 app.set('view engine', 'ejs');
 // app.engine('ejs', ejs.renderFile);
 
+app.use(morgan('dev'));
 app.use(express.static('public'));
 app.listen(PORT);
 
@@ -35,4 +38,6 @@ app.get('/users/new', function(req, res){
     res.render('users/new');
 });
 
-// app.get('/users/')
+app.post('/users/create', function(req, res){
+
+});
