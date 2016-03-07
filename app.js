@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var mongodb = require('mongodb');
 
@@ -14,6 +15,7 @@ app.set('view engine', 'ejs');
 // app.engine('ejs', ejs.renderFile);
 
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.listen(PORT);
 
@@ -39,5 +41,7 @@ app.get('/users/new', function(req, res){
 });
 
 app.post('/users/create', function(req, res){
-
+    // console.log(req.body);
+    users.insert(req.body);
+    res.redirect('/users');
 });
