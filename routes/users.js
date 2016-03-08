@@ -22,8 +22,8 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-
-    User.create(req.body, (error, user) => {
+    // console.log(req.body);
+    User.create(req.body.user, (error, user) => {
         if(error){
             console.log(error);
         }else{

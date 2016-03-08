@@ -1,10 +1,13 @@
 <h2>user new</h2>
 <form action="create" method="post">
     <div>
-        name: <input type="text" name="name">
+        name: <input type="text" name="user[name]">
     </div>
     <div>
-        furigana: <input type="text" name="furigana">
+        furigana: <input type="text" name="user[furigana]">
+    </div>
+    <div>
+        mail address: <input type="text" name="user[mailAddress]">
     </div>
     <button type="submit">regist</submit>
 </form>
