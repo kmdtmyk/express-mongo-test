@@ -23,10 +23,11 @@ router.get('/new', (req, res) => {
 
 router.post('/create', (req, res) => {
 
-    User.create(req.body, function(error, user){
+    User.create(req.body, (error, user) => {
         if(error){
             console.log(error);
         }else{
+            // console.log(user);
             res.redirect('/users');
         }
     });
@@ -36,7 +37,10 @@ router.post('/create', (req, res) => {
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
     // user.remove({_id: id});
-    res.redirect('/users');
+    User.remove({_id: id}, (error) => {
+        res.redirect('/users');
+    })
+    // res.redirect('/users');
 });
 
 module.exports = router;
