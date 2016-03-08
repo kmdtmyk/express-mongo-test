@@ -3,8 +3,6 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
-
-let ejs = require('ejs');
 let morgan = require('morgan');
 
 let PORT = 3000;
