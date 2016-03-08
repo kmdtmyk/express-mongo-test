@@ -2,22 +2,19 @@
 
 let express = require('express');
 let router = express.Router();
-let mongodb = require('mongodb');
 
-let user;
+let User = require('../models/user');
 
-mongodb.MongoClient.connect('mongodb://localhost:27017/test', function(err, database){
-    user = database.collection('users');
-});
 
 
 router.get('/', (req, res) => {
 
-    user.find().toArray((err, users) => {
+    User.find({}, (error, users) => {
         res.render('users/index', {
             users: users
-        });
+        })
     });
+
 });
 
 router.get('/new', (req, res) => {
@@ -25,14 +22,20 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    // console.log(req.body);
-    user.insert(req.body);
-    res.redirect('/users');
+
+    User.create(req.body, function(error, user){
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/users');
+        }
+    });
+
 });
 
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
-    user.remove({_id: id});
+    // user.remove({_id: id});
     res.redirect('/users');
 });
 

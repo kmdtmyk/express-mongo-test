@@ -5,11 +5,8 @@ let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
 
 let ejs = require('ejs');
-let mongodb = require('mongodb');
-
 let morgan = require('morgan');
 
-let users;
 let PORT = 3000;
 
 let app = express();
