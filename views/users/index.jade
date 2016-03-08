@@ -1,0 +1,20 @@
+h2 users list
+
+table
+  tr
+    th name
+    th furigana
+    th mail address
+    th
+    th
+  each user in users
+    tr
+      td= user.name
+      td= user.furigana
+      td= user.mailAddress
+      td
+        a(href='/user/#{user._id}/edit') edit
+      td
+        a(href='/user/#{user._id}/edit') edit
+
+a(href='/users/new') new user
