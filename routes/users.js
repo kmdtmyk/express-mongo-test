@@ -21,13 +21,41 @@ router.get('/new', (req, res) => {
     res.render('users/new');
 });
 
+router.get('/:id', (req, res) => {
+    res.render('users/show');
+});
+
+router.get('/:id/edit', (req, res) => {
+    let id = req.params.id;
+
+    User.findOne({_id: id}, (error, user) => {
+        res.render('users/edit', {
+            user: user
+        })
+    });
+
+});
+
 router.post('/create', (req, res) => {
-    // console.log(req.body);
+
     User.create(req.body.user, (error, user) => {
         if(error){
             console.log(error);
         }else{
-            // console.log(user);
+            res.redirect('/users');
+        }
+    });
+
+});
+
+router.patch('/:id', (req, res) => {
+    let id = req.params.id;
+    let user = req.body.user;
+
+    User.findOneAndUpdate({_id: id}, {$set: user}, (error, user) => {
+        if(error){
+            console.log(error);
+        }else{
             res.redirect('/users');
         }
     });
