@@ -8,12 +8,23 @@ let User = require('../models/user');
 
 
 router.get('/', (req, res) => {
+    let query = req.query;
+    let regexp = new RegExp(query.q);
 
-    User.find({}, (error, users) => {
-        res.render('users/index', {
-            users: users
+    User
+        .find({
+            $or: [
+                {name: regexp},
+                {furigana: regexp},
+                {mailAddress: regexp},
+            ]
         })
-    });
+        .exec((error, users) => {
+            res.render('users/index', {
+                query: query,
+                users: users,
+            })
+        });
 
 });
 

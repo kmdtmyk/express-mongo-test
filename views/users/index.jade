@@ -3,6 +3,12 @@ extends ../layout
 block content
 
   h1 users list
+  
+  form
+    .ui.search
+      .ui.icon.input
+        input.prompt(type='text', name='q', placeholder='search' value='#{query.q}')
+        i.search.icon
 
   table.ui.celled.table.striped
     thead
@@ -22,5 +28,9 @@ block content
             a(href='/users/#{user._id}') show
           td
             a(href='/users/#{user._id}/edit') edit
+    tfoot
+      tr
+        th(colspan='5') Total: #{users.length}
+
 
   a(href='/users/new') new user
