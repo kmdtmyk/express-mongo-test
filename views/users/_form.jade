@@ -1,14 +1,22 @@
-div name
-div
-  input(type='text' name='user[name]' value='#{user.name}')
 
-div furigana
-div
-  input(type='text' name='user[furigana]' value='#{user.furigana}')
+if user.__v === 0
+  - var action = './?_method=patch'
+else
+  - var action = './'
+  
+form(action='#{action}', method='post')
 
-div mail address
-div
-  input(type='text' name='user[mailAddress]' value='#{user.mailAddress}')
+  div name
+  div
+    input(type='text' name='user[name]' value='#{user.name}')
 
-div
-  button(type='submit') regist
+  div furigana
+  div
+    input(type='text' name='user[furigana]' value='#{user.furigana}')
+
+  div mail address
+  div
+    input(type='text' name='user[mailAddress]' value='#{user.mailAddress}')
+
+  div
+    button(type='submit') regist
