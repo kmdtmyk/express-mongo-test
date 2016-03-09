@@ -1,6 +1,10 @@
-h2 user edit
+extends ../layout
 
-form(action='./?_method=patch', method='post')
+block content
 
-  include ./_form
-  
+  h2 user edit
+
+  form(action='./?_method=patch', method='post')
+
+    include ./_form
+    

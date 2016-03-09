@@ -1,20 +1,24 @@
-h2 users list
+extends ../layout
 
-table
-  tr
-    th name
-    th furigana
-    th mail address
-    th
-    th
-  each user in users
+block content
+
+  h2 users list
+
+  table
     tr
-      td= user.name
-      td= user.furigana
-      td= user.mailAddress
-      td
-        a(href='/users/#{user._id}') show
-      td
-        a(href='/users/#{user._id}/edit') edit
+      th name
+      th furigana
+      th mail address
+      th
+      th
+    each user in users
+      tr
+        td= user.name
+        td= user.furigana
+        td= user.mailAddress
+        td
+          a(href='/users/#{user._id}') show
+        td
+          a(href='/users/#{user._id}/edit') edit
 
-a(href='/users/new') new user
+  a(href='/users/new') new user

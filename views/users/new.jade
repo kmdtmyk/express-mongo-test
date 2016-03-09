@@ -1,5 +1,9 @@
-h2 user new
+extends ../layout
 
-form(action='./', method='post')
+block content
 
-  include ./_form
+  h2 user new
+
+  form(action='./', method='post')
+
+    include ./_form
