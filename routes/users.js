@@ -18,7 +18,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('users/new');
+    let user = new User();
+    res.render('users/new', {
+        user: user
+    });
 });
 
 router.get('/:id', (req, res) => {

@@ -4,15 +4,15 @@ form(action='./', method='post')
 
   div name
   div
-    input(type='text' name='user[name]')
-  
+    input(type='text' name='user[name]' value='#{user.name}')
+
   div furigana
   div
-    input(type='text' name='user[furigana]')
-  
+    input(type='text' name='user[furigana]' value='#{user.furigana}')
+
   div mail address
   div
-    input(type='text' name='user[mailAddress]')
-  
+    input(type='text' name='user[mailAddress]' value='#{user.mailAddress}')
+
   div
     button(type='submit') regist
