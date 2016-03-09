@@ -19,6 +19,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/users', require('./routes/users'));
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 app.use(express.static('public'));
 app.listen(PORT);
