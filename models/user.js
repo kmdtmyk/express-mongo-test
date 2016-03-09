@@ -10,9 +10,9 @@ mongoose.connection.on('connected', () => {
 });
 
 let userSchema = new mongoose.Schema({
-    name: String,
-    furigana: String,
-    mailAddress: String,
+    name: { type: String, default: ''},
+    furigana: { type: String, default: ''},
+    mailAddress: { type: String, default: ''},
 });
 
 module.exports = mongoose.model('User', userSchema);
