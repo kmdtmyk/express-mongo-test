@@ -2,17 +2,5 @@ h2 user edit
 
 form(action='./?_method=patch', method='post')
 
-  div name
-  div
-    input(type='text' name='user[name]' value='#{user.name}')
+  include ./_form
   
-  div furigana
-  div
-    input(type='text' name='user[furigana]' value='#{user.furigana}')
-  
-  div mail address
-  div
-    input(type='text' name='user[mailAddress]' value='#{user.mailAddress}')
-  
-  div
-    button(type='submit') regist
