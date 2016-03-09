@@ -4,21 +4,23 @@ block content
 
   h1 users list
 
-  table
-    tr
-      th name
-      th furigana
-      th mail address
-      th
-      th
-    each user in users
+  table.ui.celled.table.striped
+    thead
       tr
-        td= user.name
-        td= user.furigana
-        td= user.mailAddress
-        td
-          a(href='/users/#{user._id}') show
-        td
-          a(href='/users/#{user._id}/edit') edit
+        th name
+        th furigana
+        th mail address
+        th
+        th
+    tbody
+      each user in users
+        tr
+          td= user.name
+          td= user.furigana
+          td= user.mailAddress
+          td
+            a(href='/users/#{user._id}') show
+          td
+            a(href='/users/#{user._id}/edit') edit
 
   a(href='/users/new') new user
