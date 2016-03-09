@@ -36,7 +36,7 @@ router.get('/:id/edit', (req, res) => {
 
 });
 
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
 
     User.create(req.body.user, (error, user) => {
         if(error){
