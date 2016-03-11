@@ -9,9 +9,9 @@ let PORT = 3000;
 
 let app = express();
 
-// app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-// app.engine('ejs', ejs.renderFile);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
