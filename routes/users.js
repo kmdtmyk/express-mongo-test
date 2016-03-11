@@ -36,7 +36,13 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    res.render('users/show');
+    let id = req.params.id;
+
+    User.findOne({_id: id}, (error, user) => {
+        res.render('users/show', {
+            user: user
+        })
+    });
 });
 
 router.get('/:id/edit', (req, res) => {
