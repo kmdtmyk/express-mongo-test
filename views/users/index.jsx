@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('../DefaultLayout');
+var Table = require('../components/Table');
 
 module.exports = React.createClass({
     render: function(){
@@ -20,9 +21,9 @@ module.exports = React.createClass({
     }
 });
 
+
 var UserList = React.createClass({
     render: function(){
-
         var tbody = this.props.users.map(function(user){
             return (
                 <tr>
@@ -40,7 +41,7 @@ var UserList = React.createClass({
         });
 
         return (
-            <table className='ui celled table striped'>
+            <Table>
                 <thead>
                     <tr>
                         <th>name</th>
@@ -60,7 +61,7 @@ var UserList = React.createClass({
                         </th>
                      </tr>
                 </tfoot>
-            </table>
+            </Table>
         );
     }
 })
