@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('../DefaultLayout');
+var UserForm = require('./UserForm');
 
 
 module.exports = React.createClass({
@@ -7,24 +8,7 @@ module.exports = React.createClass({
         return (
             <DefaultLayout>
                 <h1>user edit</h1>
-                <form className='ui form' action='./?_method=patch' method='post'>
-                    <div class='field'>
-                        <label>name</label>
-                        <input type='text' name='user[name]' value={this.props.user.name} />
-                    </div>
-
-                    <div class='field'>
-                        <label>furigana</label>
-                        <input type='text' name='user[furigana]' value={this.props.user.furigana} />
-                    </div>
-
-                    <div class='field'>
-                        <label>mail address</label>
-                        <input type='text' name='user[mailAddress]' value={this.props.user.mailAddress} />
-                    </div>
-
-                    <button className='ui button' type='submit'>regist</button>
-                </form>
+                <UserForm action='./?_method=patch' user={this.props.user}/>
             </DefaultLayout>
         );
     }
