@@ -26,7 +26,7 @@ var UserList = React.createClass({
     render: function(){
         var tbody = this.props.users.map(function(user){
             return (
-                <tr>
+                <tr key={user._id}>
                     <td>{user.name}</td>
                     <td>{user.furigana}</td>
                     <td>{user.mailAddress}</td>
