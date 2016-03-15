@@ -2,8 +2,8 @@ module.exports = {
     context: __dirname,
     entry: './src/main.jsx',
     output: {
-        filename: './bundle.js',
-        path: __dirname + '/public/build',
+        filename: 'bundle.js',
+        path: __dirname + '/public/build/',
     },
     devtool: 'inline-source-map',
     module: {
