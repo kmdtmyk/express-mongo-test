@@ -1,7 +1,8 @@
-var Hello = require('./Hello');
-var React = require('react');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Hello from './Hello';
 
-React.render(
+ReactDOM.render(
   <Hello />,
   document.getElementById('example')
 );
