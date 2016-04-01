@@ -10,7 +10,7 @@ module.exports = {
         ],
     },
     output: {
-        path: path.resolve(__dirname, 'public', 'build'),
+        path: path.resolve(__dirname, 'static', 'build'),
         filename: '[name].js',
         publicPath: '/build/',
     },

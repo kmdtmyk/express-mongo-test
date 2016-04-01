@@ -38,5 +38,5 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-app.use(express.static('public'));
+app.use(express.static('static'));
 app.listen(PORT);
