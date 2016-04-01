@@ -5,7 +5,8 @@ module.exports = React.createClass({
     render: function(){
         return (
             <DefaultLayout>
-                <a href='users'>users</a>
+                <div id='example'></div>
+                <script src='/build/main.js'></script>
             </DefaultLayout>
         );
     }

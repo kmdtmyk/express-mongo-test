@@ -12,7 +12,7 @@ export default class extends React.Component{
 
     onClick(){
         this.setState({
-            name: "clicked"
+            name: "clicked!"
         });
     }
 
