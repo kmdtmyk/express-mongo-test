@@ -5,7 +5,7 @@ module.exports = {
     context: __dirname,
     entry: {
         main: [
-            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&noInfo=true',
             './src/main.jsx',
         ],
     },
@@ -33,6 +33,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
     ],
     devtool: 'inline-source-map',
 };

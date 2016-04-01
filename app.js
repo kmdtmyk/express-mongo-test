@@ -31,11 +31,7 @@ app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
 }));
 
-app.use(webpackHotMiddleware(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000,
-}));
+app.use(webpackHotMiddleware(compiler));
 
 app.use('/users', require('./routes/users'));
 app.get('/', (req, res) => {
