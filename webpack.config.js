@@ -1,11 +1,19 @@
+var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
     context: __dirname,
-    entry: './src/main.jsx',
-    output: {
-        filename: 'bundle.js',
-        path: __dirname + '/public/build/',
+    entry: {
+        main: [
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+            './src/main.jsx',
+        ],
     },
-    devtool: 'inline-source-map',
+    output: {
+        path: path.resolve(__dirname, 'public', 'build'),
+        filename: '[name].js',
+        publicPath: '/build/',
+    },
     module: {
         loaders: [{
             test: /.jsx$/,
@@ -22,4 +30,9 @@ module.exports = {
         ],
         extensions: ['', '.js', '.jsx'],
     },
+    plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
+    devtool: 'inline-source-map',
 };

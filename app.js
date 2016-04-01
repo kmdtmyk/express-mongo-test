@@ -1,9 +1,16 @@
 'use strict';
 
 let express = require('express');
+
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
 let morgan = require('morgan');
+
+let webpack = require('webpack');
+let webpackDevMiddleware = require('webpack-dev-middleware');
+let webpackHotMiddleware = require('webpack-hot-middleware');
+let webpackConfig = require('./webpack.config.js');
+let compiler = webpack(webpackConfig);
 
 let PORT = 3000;
 
@@ -15,8 +22,20 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    noInfo: true,
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000,
+}));
 
 app.use('/users', require('./routes/users'));
 app.get('/', (req, res) => {
