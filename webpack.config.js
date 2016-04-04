@@ -5,7 +5,8 @@ module.exports = {
     context: __dirname,
     entry: {
         main: [
-            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&noInfo=true',
+            // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&noInfo=true',
+            'webpack-hot-middleware/client?noInfo=true',
             './src/main.jsx',
         ],
     },
