@@ -1,5 +1,7 @@
 'use strict';
 
+let path = require('path');
+
 let express = require('express');
 
 let bodyParser = require('body-parser');
@@ -16,7 +18,7 @@ let PORT = 3000;
 
 let app = express();
 
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
