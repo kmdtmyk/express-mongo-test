@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import NavigationBar from './components/NavigationBar';
 import Hello from './Hello';
-import Table from './Table/Table';
+import Table from './components/Table';
 
 
 if(module.hot){
