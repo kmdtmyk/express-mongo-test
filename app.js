@@ -36,9 +36,9 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.use('/users', require('./src/routes/users'));
-app.get('/', (req, res) => {
-    res.render('index');
-})
+// app.get('/', (req, res) => {
+//     res.render('index');
+// })
 
 app.use(express.static('static'));
 app.listen(PORT);
