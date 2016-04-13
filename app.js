@@ -36,6 +36,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.use('/users', require('./src/routes/users'));
+app.use('/api/users', require('./src/api/users'));
 // app.get('/', (req, res) => {
 //     res.render('index');
 // })
