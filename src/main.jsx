@@ -45,6 +45,22 @@ class Index extends Component{
 
 class UsersIndex extends Component{
 
+    constructor(){
+        super();
+        let users = [{
+            id: 1,
+            name: 'user1',
+            furigana: 'ユーザ1',
+        },{
+            id: 2,
+            name: 'user2',
+            furigana: 'ユーザ2',
+        }];
+        this.state = {
+            users: users
+        };
+    }
+
     render(){
         return (
             <div>
@@ -58,13 +74,17 @@ class UsersIndex extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>user1</td>
-                            <td>ユーザ1</td>
-                            <td>
-                                <Link to={'/users/1'}>detail</Link>
-                            </td>
-                        </tr>
+                        {this.state.users.map(user => {
+                            return (
+                                <tr>
+                                    <td>{user.name}</td>
+                                    <td>{user.furigana}</td>
+                                    <td>
+                                        <Link to={`/users/${user.id}`}>detail</Link>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
                 <Link to={'/test/1'}>test</Link>
