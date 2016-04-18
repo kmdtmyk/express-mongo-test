@@ -6,6 +6,7 @@ import Table from './components/Table';
 
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 
+import request from 'superagent';
 
 if(module.hot){
     module.hot.accept();
@@ -47,18 +48,23 @@ class UsersIndex extends Component{
 
     constructor(){
         super();
-        let users = [{
-            id: 1,
-            name: 'user1',
-            furigana: 'ユーザ1',
-        },{
-            id: 2,
-            name: 'user2',
-            furigana: 'ユーザ2',
-        }];
+
         this.state = {
-            users: users
+            users: []
         };
+
+        request
+            .get('/api/users')
+            .end((err, res) => {
+                if(err){
+                    throw err;
+                }
+                // console.dir(res);
+                this.setState({
+                    users: res.body
+                });
+            });
+
     }
 
     render(){
@@ -76,11 +82,11 @@ class UsersIndex extends Component{
                     <tbody>
                         {this.state.users.map(user => {
                             return (
-                                <tr>
+                                <tr key={user._id}>
                                     <td>{user.name}</td>
                                     <td>{user.furigana}</td>
                                     <td>
-                                        <Link to={`/users/${user.id}`}>detail</Link>
+                                        <Link to={`/users/${user._id}`}>detail</Link>
                                     </td>
                                 </tr>
                             )
