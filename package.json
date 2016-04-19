@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app",
+    "start": "node-dev app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
     "build": "gulp build"
@@ -34,6 +34,7 @@
     "gulp": "^3.9.1",
     "gulp-webpack": "^1.5.0",
     "jsx-loader": "^0.13.2",
+    "node-dev": "^3.1.0",
     "webpack-hot-middleware": "^2.10.0"
   }
 }
