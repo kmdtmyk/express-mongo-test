@@ -3,6 +3,7 @@
 let path = require('path');
 
 let express = require('express');
+let rewrite = require('express-urlrewrite');
 
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
@@ -35,11 +36,14 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-app.use('/users', require('./src/routes/users'));
+// app.use('/users', require('./src/routes/users'));
+
 app.use('/api/users', require('./src/api/users'));
 // app.get('/', (req, res) => {
 //     res.render('index');
 // })
+
+app.use(rewrite('/users*', '/index.html'));
 
 app.use(express.static('static'));
 app.listen(PORT);

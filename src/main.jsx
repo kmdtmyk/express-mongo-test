@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 import NavigationBar from './components/NavigationBar';
 import NotFound from './components/NotFound';
@@ -51,7 +51,7 @@ class Index extends Component{
 
 
 render((
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path='/' component={App}>
             <IndexRoute component={Index}/>
             <Route path='users'>
