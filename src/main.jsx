@@ -7,6 +7,7 @@ import Table from './components/Table';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 
 import UserIndex from './components/User/Index';
+import UserShow from './components/User/Show';
 
 if(module.hot){
     module.hot.accept();
@@ -46,20 +47,6 @@ class Index extends Component{
 
 
 
-class UsersShow extends Component{
-
-    render(){
-        return (
-            <div>
-                <h1>user</h1>
-            </div>
-        )
-    }
-
-}
-
-
-
 class NotFound extends Component{
 
     render(){
@@ -79,7 +66,7 @@ render((
             <IndexRoute component={Index}/>
             <Route path='users'>
                 <IndexRoute component={UserIndex}/>
-                <Route path=':userId' component={UsersShow}/>
+                <Route path=':userId' component={UserShow}/>
             </Route>
             <Route path='*' component={NotFound}/>
         </Route>
