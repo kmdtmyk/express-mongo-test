@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import NavigationBar from './components/NavigationBar';
-import Table from './components/Table';
-
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+
+import NavigationBar from './components/NavigationBar';
+import NotFound from './components/NotFound';
 
 import UserIndex from './components/User/Index';
 import UserShow from './components/User/Show';
+
 
 if(module.hot){
     module.hot.accept();
@@ -29,6 +30,8 @@ class App extends Component{
 
 }
 
+
+
 class Index extends Component{
 
     render(){
@@ -45,19 +48,6 @@ class Index extends Component{
 
 }
 
-
-
-class NotFound extends Component{
-
-    render(){
-        return (
-            <div>
-                <h1>not found</h1>
-            </div>
-        )
-    }
-
-}
 
 
 render((
