@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
-
-export default class extends React.Component{
+export default class extends Component{
 
     constructor(){
         super();
@@ -10,12 +10,8 @@ export default class extends React.Component{
     render(){
         return (
             <div className='ui inverted menu'>
-                <a className='item' href='/' tabIndex='-1'>
-                    Home
-                </a>
-                <a className='item' href='/' tabIndex='-1'>
-                    Menu1
-                </a>
+                <Link className='item' to='/' tabIndex='-1'>Home</Link>
+                <Link className='item' to='/#' tabIndex='-1'>Menu1</Link>
             </div>
         );
     }
