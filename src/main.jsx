@@ -6,7 +6,7 @@ import Table from './components/Table';
 
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 
-import request from 'superagent';
+import UserIndex from './components/User/Index';
 
 if(module.hot){
     module.hot.accept();
@@ -44,61 +44,6 @@ class Index extends Component{
 
 }
 
-class UsersIndex extends Component{
-
-    constructor(){
-        super();
-
-        this.state = {
-            users: []
-        };
-
-        request
-            .get('/api/users')
-            .end((err, res) => {
-                if(err){
-                    throw err;
-                }
-                // console.dir(res);
-                this.setState({
-                    users: res.body
-                });
-            });
-
-    }
-
-    render(){
-        return (
-            <div>
-                <h1>user list</h1>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>name</th>
-                            <th>furigana</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.users.map(user => {
-                            return (
-                                <tr key={user._id}>
-                                    <td>{user.name}</td>
-                                    <td>{user.furigana}</td>
-                                    <td>
-                                        <Link to={`/users/${user._id}`}>detail</Link>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
-                <Link to={'/test/1'}>test</Link>
-            </div>
-        )
-    }
-
-}
 
 
 class UsersShow extends Component{
@@ -133,7 +78,7 @@ render((
         <Route path='/' component={App}>
             <IndexRoute component={Index}/>
             <Route path='users'>
-                <IndexRoute component={UsersIndex}/>
+                <IndexRoute component={UserIndex}/>
                 <Route path=':userId' component={UsersShow}/>
             </Route>
             <Route path='*' component={NotFound}/>
