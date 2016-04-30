@@ -28,12 +28,30 @@ export default class extends Component{
                 });
             });
 
+
+    }
+
+    _delete(user, index){
+
+        let users = this.state.users;
+        users.splice(index, 1);
+        this.setState({users: users});
+
+        request
+            .delete('/api/users/' + user._id)
+            .end((err, res) => {
+                if(err){
+                    throw err;
+                }
+                this.setState({users: users});
+            });
     }
 
     render(){
         return (
             <div>
                 <h1>user list</h1>
+                <Link to='/users/new'>new user</Link>
                 <Table>
                     <thead>
                         <tr>
@@ -43,7 +61,7 @@ export default class extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.users.map(user => {
+                        {this.state.users.map((user, index) => {
                             return (
                                 <tr key={user._id}>
                                     <td>{user.name}</td>
@@ -51,12 +69,14 @@ export default class extends Component{
                                     <td>
                                         <Link to={`/users/${user._id}`}>detail</Link>
                                     </td>
+                                    <td>
+                                        <button type='button' onClick={this._delete.bind(this, user, index)}>delete</button>
+                                    </td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </Table>
-                <Link to={'/test/1'}>test</Link>
             </div>
         )
     }

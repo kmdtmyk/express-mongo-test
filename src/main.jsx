@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 
 import UserIndex from './components/User/Index';
 import UserShow from './components/User/Show';
+import UserNew from './components/User/New';
 
 
 if(module.hot){
@@ -56,6 +57,7 @@ render((
             <IndexRoute component={Index}/>
             <Route path='users'>
                 <IndexRoute component={UserIndex}/>
+                <Route path='new' component={UserNew}/>
                 <Route path=':userId' component={UserShow}/>
             </Route>
             <Route path='*' component={NotFound}/>
