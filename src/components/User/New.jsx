@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import ReactMixin from 'react-mixin';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+
 import request from 'superagent';
 
-export default class extends Component{
+export default class UserNew extends Component{
 
     constructor(){
         super();
 
         this.state = {
-            user: {}
+
         };
 
         request
@@ -17,29 +19,15 @@ export default class extends Component{
                 if(err){
                     throw err;
                 }
-                this.setState({
-                    user: res.body
-                });
+                this.setState(res.body);
             });
 
     }
 
-    onChange(e){
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
-
-        let user = this.state.user;
-        user[name] = value;
-
-        this.setState({
-            user: user
-        });
-    }
-
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state.user);
+        console.log(this.state);
+        return;
         browserHistory.push('/users');
     }
 
@@ -48,19 +36,20 @@ export default class extends Component{
             <div>
                 <h1>user new</h1>
                 <form className='ui form' onSubmit={this.onSubmit.bind(this)}>
+
                     <div className='field'>
                         <label>name</label>
-                        <input type='text' name='name' value={this.state.user.name} onChange={this.onChange.bind(this)} />
+                        <input type='text' valueLink={this.linkState('name')} />
                     </div>
 
                     <div className='field'>
                         <label>furigana</label>
-                        <input type='text' name='furigana' value={this.state.user.furigana} onChange={this.onChange.bind(this)} />
+                        <input type='text' valueLink={this.linkState('furigana')} />
                     </div>
 
                     <div className='field'>
                         <label>mail address</label>
-                        <input type='text' name='mailAddress' value={this.state.user.mailAddress} onChange={this.onChange.bind(this)} />
+                        <input type='text' valueLink={this.linkState('mailAddress')} />
                     </div>
 
                     <button className='ui button' type='submit'>regist</button>
@@ -70,3 +59,5 @@ export default class extends Component{
     }
 
 }
+
+ReactMixin(UserNew.prototype, LinkedStateMixin);
