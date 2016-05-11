@@ -17,6 +17,15 @@ let compiler = webpack(webpackConfig);
 
 let PORT = 3000;
 
+let mongoose = require('mongoose');
+let uri = 'mongodb://localhost:27017/test';
+mongoose.connect(uri);
+
+mongoose.connection.on('connected', () => {
+    console.log('monngose connected');
+});
+
+
 let app = express();
 
 app.set('views', path.join(__dirname, 'src', 'views'));
