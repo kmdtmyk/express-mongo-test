@@ -17,6 +17,15 @@ let compiler = webpack(webpackConfig);
 
 let PORT = 3000;
 
+let mongoose = require('mongoose');
+let uri = 'mongodb://localhost:27017/test';
+mongoose.connect(uri);
+
+mongoose.connection.on('connected', () => {
+    console.log('monngose connected');
+});
+
+
 let app = express();
 
 app.set('views', path.join(__dirname, 'src', 'views'));
@@ -36,14 +45,13 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-// app.use('/users', require('./src/routes/users'));
 
 app.use('/api/users', require('./src/api/users'));
-// app.get('/', (req, res) => {
-//     res.render('index');
-// })
+app.use('/api/projects', require('./src/api/projects'));
+
 
 app.use(rewrite('/users*', '/index.html'));
+
 
 app.use(express.static('static'));
 app.listen(PORT);
