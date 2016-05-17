@@ -10,6 +10,9 @@ import UserIndex from './components/User/Index';
 import UserShow from './components/User/Show';
 import UserNew from './components/User/New';
 
+import Projects from './project/route'
+
+console.log(Projects)
 
 if(module.hot){
     module.hot.accept();
@@ -40,6 +43,7 @@ class Index extends Component{
             <div>
                 <h1>index</h1>
                 <ul>
+                    <li><Link to={'projects'}>project list</Link></li>
                     <li><Link to={'users'}>user list</Link></li>
                     <li><Link to={'foo'}>foo</Link></li>
                 </ul>
@@ -60,6 +64,7 @@ render((
                 <Route path='new' component={UserNew}/>
                 <Route path=':userId' component={UserShow}/>
             </Route>
+            {Projects}
             <Route path='*' component={NotFound}/>
         </Route>
     </Router>

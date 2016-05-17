@@ -51,6 +51,7 @@ app.use('/api/projects', require('./src/api/projects'));
 
 
 app.use(rewrite('/users*', '/index.html'));
+app.use(rewrite('/projects*', '/index.html'));
 
 
 app.use(express.static('static'));
