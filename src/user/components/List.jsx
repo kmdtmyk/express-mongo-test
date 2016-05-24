@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router'
 
 export default class extends Component {
 
@@ -16,10 +16,10 @@ export default class extends Component {
                     <td>{user.furigana}</td>
                     <td>{user.mailAddress}</td>
                     <td>
-                        <a href={'/users/' + user._id}>show</a>
+                        <Link to={'/users/' + user._id}>show</Link>
                     </td>
                     <td>
-                        <a href={'/users/' + user._id + '/edit'}>edit</a>
+                        <Link to={'/users/' + user._id + '/edit'}>edit</Link>
                     </td>
                 </tr>
             )

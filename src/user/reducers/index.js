@@ -3,9 +3,9 @@ import { combineReducers } from 'redux'
 const initialState = {
     users: [
         {
-            id: 1, name: 'user1',
+            _id: 1, name: 'user1',
         },{
-            id: 2, name: 'user2',
+            _id: 2, name: 'user2',
         }
     ]
 }
