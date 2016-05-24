@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export default class extends Component {
+
     render(){
         return (
             <form className='ui form' action={this.props.action} method='post'>
@@ -23,4 +24,5 @@ export default class extends Component {
             </form>
         )
     }
+
 }

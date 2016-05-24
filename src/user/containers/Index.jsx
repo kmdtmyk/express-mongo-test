@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-export default class extends Component {
+import List from '../containers/List'
+
+import reducer from '../reducers'
+
+let store = createStore(reducer)
+
+
+export default class Index extends Component {
+
     render(){
         return (
-            <div>
-                <h1>User list</h1>
-                <Link to={'users/new'}>new user</Link>
-            </div>
+            <Provider store={store}>
+                <List/>
+            </Provider>
         )
     }
+
 }
