@@ -1,20 +1,19 @@
 import { combineReducers } from 'redux'
 
-const initialState = {
-    users: [
-        {
-            _id: 1, name: 'user1', furigana: 'ユーザ1',
-        },{
-            _id: 2, name: 'user2',
-        },{
-            _id: 3, name: 'user3',
-        },{
-            _id: 4, name: 'user4',
-        },{
-            _id: 5, name: 'user5',
-        },
-    ]
-}
+const initialState = [
+    {
+        _id: 1, name: 'user1', furigana: 'ユーザ1',
+    },{
+        _id: 2, name: 'user2',
+    },{
+        _id: 3, name: 'user3',
+    },{
+        _id: 4, name: 'user4',
+    },{
+        _id: 5, name: 'user5',
+    },
+]
+
 
 
 const user = (user, action) => {
@@ -31,7 +30,7 @@ const user = (user, action) => {
     }
 }
 
-const users = (users, action) => {
+const users = (users = initialState, action) => {
     switch(action.type){
         case 'DELETE_USER':
             return users.map(u => user(u, action))
@@ -41,13 +40,6 @@ const users = (users, action) => {
 
 }
 
-export default function(state = initialState, action){
-    switch(action.type){
-        case 'DELETE_USER':
-            return {
-                users: users(state.users, action)
-            }
-        default:
-            return state
-    }
-}
+export default combineReducers({
+    users
+})
