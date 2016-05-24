@@ -7,12 +7,21 @@ export default class extends Component {
         super(props)
     }
 
-    render(){
+    _delete(user){
+        console.log(user);
+        this.props.deleteUser(user);
+    }
 
-        var tbody = this.props.users.map(function(user){
+    render(){
+        const { deleteUser } = this.props
+
+        var tbody = this.props.users.map((user) => {
             return (
                 <tr key={user._id}>
-                    <td>{user.name}</td>
+                    <td>
+                        {user.name}
+                        {user.deleteFlag ? ' - delete' : ''}
+                    </td>
                     <td>{user.furigana}</td>
                     <td>{user.mailAddress}</td>
                     <td>
@@ -20,6 +29,9 @@ export default class extends Component {
                     </td>
                     <td>
                         <Link to={'/users/' + user._id + '/edit'}>edit</Link>
+                    </td>
+                    <td>
+                        <button onClick={this._delete.bind(this, user)}>delete</button>
                     </td>
                 </tr>
             )

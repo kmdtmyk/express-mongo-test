@@ -4,17 +4,20 @@ import { connect, Provider } from 'react-redux'
 import { Link } from 'react-router'
 
 import List from '../components/List'
+import { deleteUser } from '../actions'
 
 
-function mapStateToProps(state){
+function mapStateToProps(state, ownProps){
     return {
         users: state.users
     }
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch, ownProps){
     return {
-
+        deleteUser: (user) => {
+            dispatch(deleteUser(user._id))
+        }
     }
 }
 
