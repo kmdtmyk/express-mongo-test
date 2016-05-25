@@ -18,13 +18,6 @@ const initialState = [
 
 const user = (user, action) => {
     switch(action.type){
-        case 'DELETE_USER':
-            if(user._id !== action._id){
-                return user
-            }
-            return Object.assign({}, user, {
-                deleteFlag: true
-            })
         default:
             return user
     }
@@ -33,7 +26,7 @@ const user = (user, action) => {
 const users = (users = initialState, action) => {
     switch(action.type){
         case 'DELETE_USER':
-            return users.map(u => user(u, action))
+            return users.filter(user => user._id !== action._id)
         default:
             return users
     }
