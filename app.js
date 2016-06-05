@@ -48,14 +48,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(devMiddleware)
 app.use(hotMiddleware)
 
-
 app.use('/api/users', require('./src/api/users'))
 app.use('/api/projects', require('./src/api/projects'))
 
-
-app.use(rewrite('/users*', '/index.html'))
-app.use(rewrite('/projects*', '/index.html'))
-
-
 app.use(express.static('static'))
+app.use(rewrite('/*', '/index.html'))
+app.use(express.static('static'))
+
 app.listen(PORT)
