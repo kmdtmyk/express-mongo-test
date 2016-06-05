@@ -30,7 +30,8 @@
     "react-mixin": "^3.0.5",
     "react-router": "^2.0.1",
     "superagent": "^1.8.3",
-    "vue": "^1.0.24"
+    "vue": "^1.0.24",
+    "vue-router": "^0.7.13"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -40,7 +41,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "css-loader": "^0.23.1",
-    "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-webpack": "^1.5.0",
     "jsx-loader": "^0.13.2",

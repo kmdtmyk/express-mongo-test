@@ -35,7 +35,7 @@ module.exports = {
     moduleDirectories: [
       'node_modules',
     ],
-    extensions: ['', '.js', '.vue', '.jsx'],
+    extensions: ['', '.js', '.vue'],
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
