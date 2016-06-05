@@ -28,9 +28,17 @@ mongoose.connection.on('connected', () => {
 
 let app = express();
 
-app.set('views', path.join(__dirname, 'src', 'views'));
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+let devMiddleware = webpackDevMiddleware(compiler, {
+  publicPath: webpackConfig.output.publicPath,
+  // noInfo: true,
+  stats: {
+    colors: true,
+    chunks: false
+  }
+})
+
+let hotMiddleware = webpackHotMiddleware(compiler)
+
 
 app.use(morgan('dev'));
 app.use(methodOverride('_method'));
@@ -38,12 +46,8 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(webpackDevMiddleware(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    noInfo: true,
-}));
-
-app.use(webpackHotMiddleware(compiler));
+app.use(devMiddleware);
+app.use(hotMiddleware);
 
 
 app.use('/api/users', require('./src/api/users'));
