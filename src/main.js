@@ -12,6 +12,9 @@ const router = new VueRouter({
 router.map({
   '/hello': {
     component: require('./Hello')
+  },
+  '*': {
+    component: require('./components/NotFound')
   }
 })
 
