@@ -1,5 +1,5 @@
 <template>
-  <div class='ui inverted menu'>
+  <div>
     <a v-link='{path: "/"}'>Home</a>
     <a v-link='{path: "/users"}'>Users</a>
   </div>
