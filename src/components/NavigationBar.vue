@@ -1,7 +1,7 @@
 <template>
   <div class='ui inverted menu'>
     <a v-link='{path: "/"}'>Home</a>
-    <a v-link='{path: "/hello"}'>Hello</a>
+    <a v-link='{path: "/users"}'>Users</a>
   </div>
 </template>
 
