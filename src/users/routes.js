@@ -1,3 +1,8 @@
+import Index from './Index'
+import New from './New'
+import Show from './Show'
+import Edit from './Edit'
+
 
 export default {
   component: {
@@ -5,24 +10,16 @@ export default {
   },
   subRoutes: {
     '/': {
-      component: {
-        template: '<h1>user list</h1><pre>{{$route | json}}</pre>'
-      },
+      component: Index,
     },
     '/new': {
-      component: {
-        template: '<h1>user new</h1>'
-      },
+      component: New,
     },
     '/:_id': {
-      component: {
-        template: '<h1>user detail {{$route.params._id}}</h1>'
-      },
+      component: Show,
     },
     '/:_id/edit': {
-      component: {
-        template: '<h1>user edit {{$route.params._id}}</h1>'
-      },
+      component: Edit,
     },
-  }
+  },
 }
