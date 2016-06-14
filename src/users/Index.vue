@@ -2,8 +2,8 @@
 
   <h1>user list</h1>
 
-  <form>
-    <input type='search' name='q' value='{{$route.query.q}}'>
+  <form v-on:submit.prevent='search'>
+    <input type='search' name='q' v-model='q'>
   </form>
 
   <table>
@@ -35,13 +35,12 @@ export default {
   data() {
     return {
       users: [],
+      q: this.$route.query.q
     }
   },
   route: {
     data({ to, next }){
-      // console.log(to)
       let { query } = to
-      console.log(query)
 
       superagent
         .get('/api/users')
@@ -53,7 +52,11 @@ export default {
 
     },
   },
-  
+  methods: {
+    search(e){
+      this.$router.go('?q=' + this.q)
+    }
+  },
 }
 </script>
 
