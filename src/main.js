@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   history: true,
+  saveScrollPosition: true,
 })
 
 router.map(routes)

@@ -12,6 +12,7 @@
         <th>name</th>
         <th>furigana</th>
         <th>mail address</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -19,17 +20,18 @@
         <td>{{user.name}}</td>
         <td>{{user.furigana}}</td>
         <td>{{user.mailAddress}}</td>
+        <td><a v-link='{path: "users/" + user._id + "/edit"}'>edit</a></td>
       </tr>
     </tbody>
   </table>
 
-  <a v-link="{path:'new', append: true}">new user</a>
+  <a v-link="{path:'users/new'}">new user</a>
 
   <!-- <pre>{{$route | json}}</pre> -->
 </template>
 
 <script>
-import superagent from 'superagent'
+import request from '../request/user'
 
 export default {
   data() {
@@ -42,8 +44,7 @@ export default {
     data({ to, next }){
       let { query } = to
 
-      superagent
-        .get('/api/users')
+      request
         .query(query)
         .end(function(err, res){
           let users = res.body
@@ -55,7 +56,7 @@ export default {
   methods: {
     search(e){
       this.$router.go('?q=' + this.q)
-    }
+    },
   },
 }
 </script>

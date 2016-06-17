@@ -22,24 +22,16 @@
 
 <script>
 import superagent from 'superagent'
+import request from '../request/user'
 
 export default {
-  data(){
-    return {
-      user: {},
-    }
-  },
+  props: ['user'],
   methods: {
     regist(){
       let user = this.user
-
-      superagent
-        .post('/api/users')
-        .send(user)
-        .end((err, res) => {
-          this.$router.go('.')
-        })
-
+      request.save(user).end((err, res) => {
+        this.$router.go('/users')
+      })
     },
   },
 }

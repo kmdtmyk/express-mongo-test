@@ -68,7 +68,7 @@ router.patch('/:id', (req, res) => {
   let id = req.params.id;
   let user = req.body;
 
-  User.findOneAndUpdate({_id: id}, {$set: user}, (error, user) => {
+  User.findOneAndUpdate({_id: id}, {$set: user}, {upsert: true}, (error, user) => {
     if(error){
       res.send(error);
     }else{
