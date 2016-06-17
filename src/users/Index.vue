@@ -3,7 +3,7 @@
   <h1>user list</h1>
 
   <form v-on:submit.prevent='search'>
-    <input type='search' name='q' v-model='q'>
+    <input type='search' name='q' v-model='q' placeholder='search'>
   </form>
 
   <table>
@@ -20,14 +20,16 @@
         <td>{{user.name}}</td>
         <td>{{user.furigana}}</td>
         <td>{{user.mailAddress}}</td>
-        <td><a v-link='{path: "users/" + user._id + "/edit"}'>edit</a></td>
+        <td>
+          <a v-link='{path: "users/" + user._id + "/edit"}'>edit</a>
+          <button v-on:click='del(user)'>delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
 
   <a v-link="{path:'users/new'}">new user</a>
 
-  <!-- <pre>{{$route | json}}</pre> -->
 </template>
 
 <script>
@@ -57,6 +59,11 @@ export default {
     search(e){
       this.$router.go('?q=' + this.q)
     },
+    del(user){
+      request.delete(user._id).end((err, res) => {
+        this.users = this.users.filter((u) => u._id !== user._id)
+      })
+    }
   },
 }
 </script>

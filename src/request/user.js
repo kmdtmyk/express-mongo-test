@@ -22,5 +22,9 @@ export default class {
     return superagent.post('/api/users').send(user)
   }
 
+  static delete(_id){
+    return superagent.delete('/api/users/' + _id)
+  }
+
 
 }
