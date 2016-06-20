@@ -50,6 +50,7 @@ app.use(hotMiddleware)
 
 app.use('/api/users', require('./src/api/users'))
 app.use('/api/projects', require('./src/api/projects'))
+app.use('/api/issues', require('./src/api/issues'))
 
 app.use(express.static('static'))
 app.use(rewrite('/*', '/index.html'))
