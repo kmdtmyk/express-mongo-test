@@ -1,17 +1,23 @@
 import express from 'express'
 
-import Project from '../models/project'
+import Issue from '../models/issue'
 
 
 let router = express.Router()
 
 
 router.get('/', (req, res) => {
+  let query = req.query
+  let regexp = new RegExp(query.q)
 
-  Project
-    .find({})
-    .exec((error, projects) => {
-      res.send(projects)
+  Issue
+    .find({
+      $or: [
+        {title: regexp},
+      ]
+    })
+    .exec((error, issues) => {
+      res.send(issues);
     })
 
 })
@@ -19,32 +25,35 @@ router.get('/', (req, res) => {
 
 
 router.get('/new', (req, res) => {
-  let project = new Project()
-  res.send(project)
+  let issue = new Issue()
+  res.send(issue)
 })
 
 
 
 router.get('/:id', (req, res) => {
   let id = req.params.id
-  Project.findOne({_id: id}, (error, project) => {
+
+  Issue.findOne({_id: id}, (error, issue) => {
     if(error){
       res.send(error)
     }else{
-      res.send(project)
+      res.send(issue)
     }
   })
+
 })
 
 
 
 router.post('/', (req, res) => {
-  let project = req.body
-  Project.create(project, (error, project) => {
+  let issue = req.body
+
+  Issue.create(issue, (error, issue) => {
     if(error){
       res.send(error)
     }else{
-      res.send(project)
+      res.send(issue)
     }
   })
 
@@ -54,13 +63,13 @@ router.post('/', (req, res) => {
 
 router.patch('/:id', (req, res) => {
   let id = req.params.id
-  let project = req.body
+  let issue = req.body
 
-  Project.findOneAndUpdate({_id: id}, {$set: project}, (error, project) => {
+  Issue.findOneAndUpdate({_id: id}, {$set: issue}, {upsert: true}, (error, user) => {
     if(error){
       res.send(error)
     }else{
-      res.send(project)
+      res.send(issue)
     }
   })
 
@@ -70,9 +79,11 @@ router.patch('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   let id = req.params.id
-  Project.remove({_id: id}, (error) => {
+
+  Issue.remove({_id: id}, (error) => {
     res.send(error)
   })
+
 });
 
 

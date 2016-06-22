@@ -1,58 +1,66 @@
-'use strict';
 
-let path = require('path');
+import path from 'path'
 
-let express = require('express');
-let rewrite = require('express-urlrewrite');
+import express from 'express'
+import rewrite from 'express-urlrewrite'
 
-let bodyParser = require('body-parser');
-let methodOverride = require('method-override');
-let morgan = require('morgan');
+import bodyParser from 'body-parser'
+import methodOverride from 'method-override'
+import morgan from 'morgan'
 
-let webpack = require('webpack');
-let webpackDevMiddleware = require('webpack-dev-middleware');
-let webpackHotMiddleware = require('webpack-hot-middleware');
-let webpackConfig = require('./webpack.config.js');
-let compiler = webpack(webpackConfig);
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackConfig from './webpack.config.js'
 
-let PORT = 3000;
+import mongoose from 'mongoose'
 
-let mongoose = require('mongoose');
-let uri = 'mongodb://localhost:27017/test';
-mongoose.connect(uri);
+let compiler = webpack(webpackConfig)
+
+let PORT = 3000
+
+let uri = 'mongodb://localhost:27017/test'
+mongoose.connect(uri)
 
 mongoose.connection.on('connected', () => {
-    console.log('monngose connected');
-});
+  console.log('monngose connected')
+})
 
 
-let app = express();
+let app = express()
 
-app.set('views', path.join(__dirname, 'src', 'views'));
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+let devMiddleware = webpackDevMiddleware(compiler, {
+  publicPath: webpackConfig.output.publicPath,
+  // noInfo: true,
+  stats: {
+    colors: true,
+    chunks: false
+  }
+})
 
-app.use(morgan('dev'));
-app.use(methodOverride('_method'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.use(webpackDevMiddleware(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    noInfo: true,
-}));
-
-app.use(webpackHotMiddleware(compiler));
+let hotMiddleware = webpackHotMiddleware(compiler)
 
 
-app.use('/api/users', require('./src/api/users'));
-app.use('/api/projects', require('./src/api/projects'));
+app.use(morgan('dev'))
+app.use(methodOverride('_method'))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(devMiddleware)
+app.use(hotMiddleware)
+
+import users from './src/api/users'
+import projects from './src/api/projects'
+import issues from './src/api/issues'
+
+app.use('/api/v1/users', users)
+app.use('/api/v1/projects', projects)
+app.use('/api/v1/issues', issues)
+
+app.use(express.static('static'))
+app.use(rewrite('/*', '/index.html'))
+app.use(express.static('static'))
 
 
-app.use(rewrite('/users*', '/index.html'));
-app.use(rewrite('/projects*', '/index.html'));
-
-
-app.use(express.static('static'));
-app.listen(PORT);
+app.listen(PORT)
