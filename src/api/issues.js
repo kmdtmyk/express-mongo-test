@@ -1,15 +1,14 @@
-"use strict";
+import express from 'express'
 
-let express = require('express');
-let router = express.Router();
+import Issue from '../models/issue'
 
-let Issue = require('../models/issue');
 
+let router = express.Router()
 
 
 router.get('/', (req, res) => {
-  let query = req.query;
-  let regexp = new RegExp(query.q);
+  let query = req.query
+  let regexp = new RegExp(query.q)
 
   Issue
     .find({
@@ -19,74 +18,74 @@ router.get('/', (req, res) => {
     })
     .exec((error, issues) => {
       res.send(issues);
-    });
+    })
 
-});
+})
 
 
 
 router.get('/new', (req, res) => {
-  let issue = new Issue();
-  res.send(issue);
-});
+  let issue = new Issue()
+  res.send(issue)
+})
 
 
 
 router.get('/:id', (req, res) => {
-  let id = req.params.id;
+  let id = req.params.id
 
   Issue.findOne({_id: id}, (error, issue) => {
     if(error){
-      res.send(error);
+      res.send(error)
     }else{
-      res.send(issue);
+      res.send(issue)
     }
-  });
+  })
 
-});
+})
 
 
 
 router.post('/', (req, res) => {
-  let issue = req.body;
+  let issue = req.body
 
   Issue.create(issue, (error, issue) => {
     if(error){
-      res.send(error);
+      res.send(error)
     }else{
-      res.send(issue);
+      res.send(issue)
     }
-  });
+  })
 
-});
+})
 
 
 
 router.patch('/:id', (req, res) => {
-  let id = req.params.id;
-  let issue = req.body;
+  let id = req.params.id
+  let issue = req.body
 
   Issue.findOneAndUpdate({_id: id}, {$set: issue}, {upsert: true}, (error, user) => {
     if(error){
-      res.send(error);
+      res.send(error)
     }else{
-      res.send(issue);
+      res.send(issue)
     }
-  });
+  })
 
-});
+})
 
 
 
 router.delete('/:id', (req, res) => {
-  let id = req.params.id;
+  let id = req.params.id
 
   Issue.remove({_id: id}, (error) => {
-    res.send(error);
+    res.send(error)
   })
 
 });
 
 
 
-module.exports = router;
+export default router

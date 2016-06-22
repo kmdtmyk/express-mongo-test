@@ -1,11 +1,11 @@
-"use strict";
+import mongoose from 'mongoose'
 
-let mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
   name: { type: String, default: ''},
   furigana: { type: String, default: ''},
   mailAddress: { type: String, default: ''},
-});
+})
 
-module.exports = mongoose.model('User', schema);
+
+export default mongoose.model('User', schema)

@@ -1,12 +1,12 @@
-"use strict";
+import mongoose from 'mongoose'
 
-let mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
-  number: { type: Number, unique: true },
+  number: { type: Number },
   title: { type: String, default: ''},
   body: { type: String, default: ''},
   state: { type: String, default: ''},
 });
 
-module.exports = mongoose.model('Issue', schema);
+
+export default mongoose.model('Issue', schema)

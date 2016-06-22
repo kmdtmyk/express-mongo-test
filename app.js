@@ -1,27 +1,29 @@
 
-let path = require('path')
+import path from 'path'
 
-let express = require('express')
-let rewrite = require('express-urlrewrite')
+import express from 'express'
+import rewrite from 'express-urlrewrite'
 
-let bodyParser = require('body-parser')
-let methodOverride = require('method-override')
-let morgan = require('morgan')
+import bodyParser from 'body-parser'
+import methodOverride from 'method-override'
+import morgan from 'morgan'
 
-let webpack = require('webpack')
-let webpackDevMiddleware = require('webpack-dev-middleware')
-let webpackHotMiddleware = require('webpack-hot-middleware')
-let webpackConfig = require('./webpack.config.js')
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackConfig from './webpack.config.js'
+
+import mongoose from 'mongoose'
+
 let compiler = webpack(webpackConfig)
 
 let PORT = 3000
 
-let mongoose = require('mongoose')
 let uri = 'mongodb://localhost:27017/test'
 mongoose.connect(uri)
 
 mongoose.connection.on('connected', () => {
-    console.log('monngose connected')
+  console.log('monngose connected')
 })
 
 
@@ -48,12 +50,17 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(devMiddleware)
 app.use(hotMiddleware)
 
-app.use('/api/v1/users', require('./src/api/users'))
-app.use('/api/v1/projects', require('./src/api/projects'))
-app.use('/api/v1/issues', require('./src/api/issues'))
+import users from './src/api/users'
+import projects from './src/api/projects'
+import issues from './src/api/issues'
+
+app.use('/api/v1/users', users)
+app.use('/api/v1/projects', projects)
+app.use('/api/v1/issues', issues)
 
 app.use(express.static('static'))
 app.use(rewrite('/*', '/index.html'))
 app.use(express.static('static'))
+
 
 app.listen(PORT)

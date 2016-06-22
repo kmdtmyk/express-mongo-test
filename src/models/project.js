@@ -1,9 +1,9 @@
-"use strict";
+import mongoose from 'mongoose'
 
-let mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
   name: { type: String, default: ''},
-});
+})
 
-module.exports = mongoose.model('Project', schema);
+
+export default mongoose.model('Project', schema)
