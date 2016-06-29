@@ -1,4 +1,5 @@
 import users from './users/routes'
+import issues from './issues/routes'
 
 import NotFound from './components/NotFound'
 
@@ -9,6 +10,7 @@ export default {
     },
   },
   '/users': users,
+  '/issues': issues,
   '*': {
     component: NotFound
   },
