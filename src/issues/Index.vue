@@ -17,9 +17,10 @@
     </thead>
     <tbody>
       <tr v-for='issue in issues'>
-        <td>{{issue.title}}</td>
         <td>
-          <a v-link='{path: "issues/" + issue._id + "/edit"}'>edit</a>
+          <a v-link='{path: "issues/" + issue._id}'>{{issue.title}}</a>
+        </td>
+        <td>
           <button v-on:click='del(issue)'>delete</button>
         </td>
       </tr>
