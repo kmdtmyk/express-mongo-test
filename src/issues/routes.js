@@ -1,5 +1,5 @@
 import Index from './Index'
-// import New from './New'
+import New from './New'
 // import Show from './Show'
 // import Edit from './Edit'
 
@@ -12,9 +12,9 @@ export default {
     '/': {
       component: Index,
     },
-    // '/new': {
-    //   component: New,
-    // },
+    '/new': {
+      component: New,
+    },
     // '/:_id': {
     //   component: Show,
     // },
